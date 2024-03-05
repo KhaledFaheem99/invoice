@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Invoices</title>
+    <style>
+      :root {
+        --main-color: rgb(26 10 10);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Poppins, sans-serif;
+      }
+
+      .invoices-container {
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        transform: translate(-50%, -10%);
+        background-color: white;
+        border: 1px solid black;
+        padding: 20px;
+        font-weight: bold;
+        width: 30%;
+      }
+
+      .invoices-container h2 {
+        color: rgb(48 49 217);
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 18px;
+        padding: 10px 0 0 0;
+      }
+
+      .invoices-container span {
+        display: block;
+        color: var(--main-color);
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      .invoices-container p {
+        text-align: center;
+        color: rgb(3 255 28);
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .invoices-container .customer-number {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .invoices-container .customer-number .num {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgb(48 49 217);
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 4px solid orange;
+        color: white;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .invoices-container .customer-number .english,
+      .invoices-container .customer-number .arabic {
+        width: 150px;
+        background-color: rgb(48 49 217);
+        text-align: center;
+        padding: 5px;
+        position: relative;
+        font-size: 12px;
+      }
+
+      .invoices-container .customer-number .english::before,
+      .invoices-container .customer-number .arabic::before {
+        content: "";
+        position: absolute;
+        border-width: 20px;
+        border-style: solid;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .invoices-container .customer-number .english::before {
+        left: -3px;
+        border-color: transparent transparent transparent white;
+      }
+
+      .invoices-container .customer-number .arabic::before {
+        right: -3px;
+        border-color: transparent white transparent transparent;
+      }
+
+      .invoices-container .commercial-registration {
+        display: flex;
+        align-items: center;
+        padding-bottom: 30px;
+      }
+
+      .invoices-container .commercial-registration .value {
+        width: 100%;
+      }
+
+      .invoices-container .commercial-registration span:first-of-type {
+        text-align: left;
+      }
+
+      .invoices-container .commercial-registration span:last-of-type {
+        text-align: right;
+      }
+
+      .invoices-container .commercial-registration span {
+        font-size: 12px;
+        color: var(--main-color);
+        width: 30%;
+        margin: 0;
+      }
+
+      .invoices-container .commercial-registration span:first-of-type {
+        margin: 0;
+        text-align: left;
+      }
+
+      .invoices-container .information {
+        border-bottom: 1px solid black;
+      }
+      .invoices-container .information .value {
+        width: 100%;
+      }
+
+      .invoices-container .information span:first-of-type {
+        text-align: left;
+      }
+
+      .invoices-container .information span:last-of-type {
+        text-align: right;
+      }
+
+      .invoices-container .information div,
+      .invoices-container .service,
+      .invoices-container .payment-section div,
+      .footer-info-arabic,
+      .footer-info-english {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .invoices-container .information span,
+      .invoices-container .service span,
+      .invoices-container .payment-section span,
+      .footer-info-arabic span,
+      .footer-info-english span {
+        color: #9d9d9d;
+        color: var(--main-color);
+        font-size: 12px;
+        opacity: 0.7;
+        width: 30%;
+      }
+
+      .invoices-container .information .value,
+      .invoices-container .service .value,
+      .invoices-container .payment-section .value,
+      .footer-info-arabic .value,
+      .footer-info-english .value {
+        width: 100%;
+      }
+
+      .invoices-container .information span:first-of-type,
+      .invoices-container .service span:first-of-type,
+      .invoices-container .payment-section span:first-of-type,
+      .footer-info-arabic span:first-of-type,
+      .footer-info-english span:first-of-type {
+        text-align: left;
+      }
+
+      .invoices-container .information span:last-of-type,
+      .invoices-container .service span:last-of-type,
+      .invoices-container .payment-section span:last-of-type,
+      .footer-info-arabic span:last-of-type,
+      .footer-info-english span:last-of-type {
+        text-align: right;
+      }
+
+      .footer-info-arabic,
+      .footer-info-english,
+      .invoices-container .service {
+        border-bottom: 1px solid black;
+      }
+
+      .invoices-container .service,
+      .footer-info-arabic {
+        padding-top: 10px;
+      }
+
+      .invoices-container .message {
+        font-size: 12px;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invoices-container">
+      <h2>Simplified tax invoice</h2>
+
+      <span>Pinnacle</span>
+
+      <p>Paid Invoice</p>
+
+      <div class="customer-number">
+        <div class="english">Customer Number</div>
+        <span class="num"></span>
+        <div class="arabic">عميل رقم</div>
+      </div>
+
+      <div class="commercial-registration">
+        <span>Commercial Registration</span>
+        <span class="value" id="Commercial Registration"></span>
+        <span>الرقم الضريبي </span>
+      </div>
+
+      <div class="information">
+        <div class="date">
+          <span>Date</span>
+          <span class="value" id="date"></span>
+          <span>التاريخ </span>
+        </div>
+        <div class="invoice">
+          <span>Invoice</span>
+          <span class="value" id="invoice"></span>
+          <span>رقم الفاتورة </span>
+        </div>
+        <div class="name">
+          <span>Name</span>
+          <span class="value" id="name"></span>
+          <span>الاسم</span>
+        </div>
+        <div class="arabic-price">
+          <span>السعر</span>
+          <span class="value">النوع </span>
+          <span>الوصف</span>
+        </div>
+        <div class="price">
+          <span>Price</span>
+          <span class="value">Type </span>
+          <span>Description</span>
+        </div>
+      </div>
+
+      <div class="holder" id="services">
+        <div class="service">
+          <span>21.00</span>
+          <span class="value">service</span>
+          <span>حمام زيت </span>
+        </div>
+      </div>
+
+      <div class="payment-section">
+        <div class="subtotal">
+          <span>Subtotal</span>
+          <span class="value" id="subtotal"></span>
+          <span>المجموع</span>
+        </div>
+        <div class="refunded">
+          <span>Refunded</span>
+          <span class="value" id="refunded"></span>
+          <span>مرتجعات</span>
+        </div>
+        <div class="discount">
+          <span>discount</span>
+          <span class="value" id="discount"></span>
+          <span>الخصم</span>
+        </div>
+        <div class="vat">
+          <span>Vat</span>
+          <span class="value" id="vat"></span>
+          <span>ضريبه القيمه </span>
+        </div>
+        <div class="total">
+          <span>Total</span>
+          <span class="value" id="total"></span>
+          <span>الاجمالي </span>
+        </div>
+        <div class="cash">
+          <span>Cash</span>
+          <span class="value" id="cash"></span>
+          <span>نقد </span>
+        </div>
+        <div class="visa">
+          <span>Visa</span>
+          <span class="value" id="visa"></span>
+          <span>فيزا </span>
+        </div>
+        <div class="remained">
+          <span>Remained</span>
+          <span class="value" id="remained"></span>
+          <span>المتبقي </span>
+        </div>
+      </div>
+
+      <div class="footer-info-arabic">
+        <span>الموظف</span>
+        <span class="value">الخدمات</span>
+        <span>التاريخ</span>
+      </div>
+
+      <div class="footer-info-english">
+        <span>Employees</span>
+        <span class="value">Services</span>
+        <span>Date</span>
+      </div>
+
+      <div class="holder" id="footer-services">
+        <div class="footer-service"></div>
+      </div>
+
+      <link rel="stylesheet" href="" />
+
+      <span class="message">Ramadan Kareem, Eid Mubarak 😀 </span>
+    </div>
+  </body>
+</html>
